@@ -5,7 +5,8 @@
 		"build": "next build",
 		"develop": "next dev",
 		"export": "next build && next export",
-		"start": "next start"
+		"start": "next start",
+		"sync": "git clone https://github.com/yuhr/blog.yuhr.org --branch data data"
 	},
 	"dependencies": {
 		"date-fns": "^2.28.0",
