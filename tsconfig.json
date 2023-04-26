@@ -17,6 +17,7 @@
 		"alwaysStrict": true,
 		"exactOptionalPropertyTypes": true,
 		"noUncheckedIndexedAccess": true,
+		"baseUrl": ".",
 		"paths": {
 			"@/*": ["./*"]
 		}
