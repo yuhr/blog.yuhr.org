@@ -22,6 +22,12 @@ dependencies:
   react-dom:
     specifier: 18.1.0
     version: 18.1.0(react@18.1.0)
+  rehype-raw:
+    specifier: ^6.1.1
+    version: 6.1.1
+  rehype-sanitize:
+    specifier: ^5.0.1
+    version: 5.0.1
   rehype-stringify:
     specifier: ^9.0.3
     version: 9.0.3
@@ -31,9 +37,6 @@ dependencies:
   remark-gfm:
     specifier: ^3.0.1
     version: 3.0.1
-  remark-github:
-    specifier: ^11.2.2
-    version: 11.2.2
   remark-parse:
     specifier: ^10.0.1
     version: 10.0.1
@@ -3332,6 +3335,15 @@ packages:
       zwitch: 2.0.4
     dev: false
 
+  /hast-util-sanitize@4.1.0:
+    resolution:
+      {
+        integrity: sha512-Hd9tU0ltknMGRDv+d6Ro/4XKzBqQnP/EZrpiTbpFYfXv/uOhWeKc+2uajcbEvAEH98VZd7eII2PiXm13RihnLw==,
+      }
+    dependencies:
+      "@types/hast": 2.3.4
+    dev: false
+
   /hast-util-to-html@8.0.4:
     resolution:
       {
@@ -5719,6 +5731,28 @@ packages:
       functions-have-names: 1.2.3
     dev: true
 
+  /rehype-raw@6.1.1:
+    resolution:
+      {
+        integrity: sha512-d6AKtisSRtDRX4aSPsJGTfnzrX2ZkHQLE5kiUuGOeEoLpbEulFF4hj0mLPbsa+7vmguDKOVVEQdHKDSwoaIDsQ==,
+      }
+    dependencies:
+      "@types/hast": 2.3.4
+      hast-util-raw: 7.2.3
+      unified: 10.1.2
+    dev: false
+
+  /rehype-sanitize@5.0.1:
+    resolution:
+      {
+        integrity: sha512-da/jIOjq8eYt/1r9GN6GwxIR3gde7OZ+WV8pheu1tL8K0D9KxM2AyMh+UEfke+FfdM3PvGHeYJU0Td5OWa7L5A==,
+      }
+    dependencies:
+      "@types/hast": 2.3.4
+      hast-util-sanitize: 4.1.0
+      unified: 10.1.2
+    dev: false
+
   /rehype-stringify@9.0.3:
     resolution:
       {
@@ -5742,19 +5776,6 @@ packages:
       unified: 10.1.2
     transitivePeerDependencies:
       - supports-color
-    dev: false
-
-  /remark-github@11.2.2:
-    resolution:
-      {
-        integrity: sha512-uO6q6NOszPFC/dMS6R0ExuMCk8XNuTptgw+eBfjsQiseyiDnUtUKBajN2fHtRo4wDtcjX2UTmZimmKGiYzZq+w==,
-      }
-    dependencies:
-      "@types/mdast": 3.0.11
-      mdast-util-find-and-replace: 2.2.2
-      mdast-util-to-string: 3.2.0
-      unified: 10.1.2
-      unist-util-visit: 4.1.2
     dev: false
 
   /remark-parse@10.0.1:
