@@ -8,7 +8,7 @@ import Issue from "@/types/Issue"
 const listIssues = async () => {
 	const paths = await glob.promise(`${dataDirectoryPath}/issues/*/issue.md`)
 	return paths
-		.map(async filePath => {
+		.map(filePath => {
 			const content = fs.readFileSync(filePath, { encoding: "utf-8" })
 			const issueMatter = matter(content)
 			const body = issueMatter.content
