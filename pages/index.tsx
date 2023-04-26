@@ -1,7 +1,7 @@
 import type { NextPage } from "next"
 import Link from "next/link"
-import Time from "../components/Time"
-import { listIssues } from "../lib/issue"
+import Time from "@/components/Time"
+import { listIssues } from "@/lib/issue"
 
 namespace index {
 	export type Props = {

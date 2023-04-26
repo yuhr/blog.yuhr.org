@@ -2,14 +2,14 @@
 import type { NextPage } from "next"
 import Head from "next/head"
 import Link from "next/link"
-import Time from "../../components/Time"
+import Time from "@/components/Time"
 import {
 	getIssue,
 	listIssues,
 	listIssueComments,
 	type Issue,
 	type IssueComment,
-} from "../../lib/issue"
+} from "@/lib/issue"
 
 namespace Article {
 	export type Props = {
