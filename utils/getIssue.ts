@@ -2,6 +2,7 @@ import fs from "fs"
 import matter from "gray-matter"
 import dataDirectoryPath from "./dataDirectoryPath"
 import renderMarkdown from "./renderMarkdown"
+import Issue from "@/types/Issue"
 
 const getIssue = async ({ issueNumber }: { issueNumber: number }) => {
 	const filePath = `${dataDirectoryPath}/issues/${issueNumber}/issue.md`
@@ -9,11 +10,11 @@ const getIssue = async ({ issueNumber }: { issueNumber: number }) => {
 	const issueMatter = matter(content)
 	const body = issueMatter.content
 	const bodyHTML = await renderMarkdown(body)
-	return {
+	return Issue.check({
 		body,
 		bodyHTML,
 		...issueMatter.data,
-	}
+	})
 }
 
 export default getIssue

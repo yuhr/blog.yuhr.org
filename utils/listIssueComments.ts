@@ -11,21 +11,19 @@ const listIssueComments = async ({ issueNumber }: { issueNumber: number }) => {
 		`${dataDirectoryPath}/issues/${issueNumber}/issue_comments/*.md`,
 	)
 	const issueComments = await Promise.all(
-		paths
-			.map(async (filePath: string) => {
-				const content = fs.readFileSync(filePath, { encoding: "utf-8" })
-				const issueMatter = matter(content)
-				const body = issueMatter.content
-				const bodyHTML = await renderMarkdown(body)
-				return {
-					body,
-					bodyHTML,
-					...issueMatter.data,
-				}
-			})
-			.map(IssueComment.check),
+		paths.map(async filePath => {
+			const content = fs.readFileSync(filePath, { encoding: "utf-8" })
+			const issueMatter = matter(content)
+			const body = issueMatter.content
+			const bodyHTML = await renderMarkdown(body)
+			return {
+				body,
+				bodyHTML,
+				...issueMatter.data,
+			}
+		}),
 	)
-	return issueComments.sort(compareByCreatedAt)
+	return issueComments.map(IssueComment.check).sort(compareByCreatedAt)
 }
 
 export default listIssueComments

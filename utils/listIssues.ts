@@ -8,7 +8,7 @@ import Issue from "@/types/Issue"
 const listIssues = async () => {
 	const paths = await glob.promise(`${dataDirectoryPath}/issues/*/issue.md`)
 	return paths
-		.map(filePath => {
+		.map(async filePath => {
 			const content = fs.readFileSync(filePath, { encoding: "utf-8" })
 			const issueMatter = matter(content)
 			const body = issueMatter.content
@@ -17,7 +17,7 @@ const listIssues = async () => {
 				...issueMatter.data,
 			}
 		})
-		.map(Issue.check)
+		.map(Issue.omit("bodyHTML").check)
 		.sort(compareByCreatedAt)
 		.reverse()
 }

@@ -5,9 +5,9 @@ const Issue = Record({
 	number: Number,
 	created_at: String,
 	title: String,
-	content: String,
 	user: User,
 	html_url: String,
+	body: String,
 	bodyHTML: String,
 })
 
