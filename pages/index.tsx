@@ -2,14 +2,13 @@ import type { NextPage } from "next"
 import Link from "next/link"
 import Time from "@/components/Time"
 import { listIssues } from "@/lib/issue"
+import Issue from "@/types/Issue"
 
 namespace index {
 	export type Props = {
-		issues: Array<Issue>
+		issues: Issue[]
 	}
 }
-
-type Issue = any
 
 const index: NextPage<index.Props> = ({ issues }) => {
 	return (

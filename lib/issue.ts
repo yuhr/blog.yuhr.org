@@ -7,10 +7,8 @@ import remarkGfm from "remark-gfm"
 import remarkGithub from "remark-github"
 import remarkParse from "remark-parse"
 import remarkRehype from "remark-rehype"
-
-export type Issue = any
-
-export type IssueComment = any
+import Issue from "@/types/Issue"
+import IssueComment from "@/types/IssueComment"
 
 const dataDirectoryPath = process.env.DATA_DIRECTORY_PATH || "./data"
 
@@ -39,6 +37,7 @@ export const listIssues = async () => {
 				...issueMatter.data,
 			}
 		})
+		.map(Issue.check)
 		.sort(byCreatedAt)
 		.reverse()
 }
@@ -52,29 +51,27 @@ export const listIssueComments = async ({
 		`${dataDirectoryPath}/issues/${issueNumber}/issue_comments/*.md`,
 	)
 	const issueComments = await Promise.all(
-		paths.map(async (filePath: string) => {
-			const content = fs.readFileSync(filePath, { encoding: "utf-8" })
-			const issueMatter = matter(content)
-			const body = issueMatter.content
-			const bodyHTML = await renderMarkdown(body)
-			return {
-				body,
-				bodyHTML,
-				...issueMatter.data,
-			}
-		}),
+		paths
+			.map(async (filePath: string) => {
+				const content = fs.readFileSync(filePath, { encoding: "utf-8" })
+				const issueMatter = matter(content)
+				const body = issueMatter.content
+				const bodyHTML = await renderMarkdown(body)
+				return {
+					body,
+					bodyHTML,
+					...issueMatter.data,
+				}
+			})
+			.map(IssueComment.check),
 	)
 	return issueComments.sort(byCreatedAt)
 }
 
-const byCreatedAt = (a: any, b: any) => {
-	if (a.created_at < b.created_at) {
-		return -1
-	} else if (a.created_at > b.created_at) {
-		return 1
-	} else {
-		return 0
-	}
+const byCreatedAt = (a: { created_at: string }, b: { created_at: string }) => {
+	const a_created_at = new Date(a.created_at)
+	const b_created_at = new Date(b.created_at)
+	return a_created_at.valueOf() - b_created_at.valueOf()
 }
 
 const renderMarkdown = async (content: string) => {

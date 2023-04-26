@@ -3,18 +3,14 @@ import type { NextPage } from "next"
 import Head from "next/head"
 import Link from "next/link"
 import Time from "@/components/Time"
-import {
-	getIssue,
-	listIssues,
-	listIssueComments,
-	type Issue,
-	type IssueComment,
-} from "@/lib/issue"
+import { getIssue, listIssues, listIssueComments } from "@/lib/issue"
+import Issue from "@/types/Issue"
+import IssueComment from "@/types/IssueComment"
 
 namespace Article {
 	export type Props = {
 		issue: Issue
-		issueComments: Array<IssueComment>
+		issueComments: IssueComment[]
 	}
 }
 
@@ -52,7 +48,7 @@ export default Article
 
 export const getStaticPaths = async () => {
 	const issues = await listIssues()
-	const paths = issues.map((issue: any) => {
+	const paths = issues.map(issue => {
 		return {
 			params: {
 				issueNumber: issue.number.toString(),

@@ -40,6 +40,9 @@ dependencies:
   remark-rehype:
     specifier: ^10.1.0
     version: 10.1.0
+  runtypes:
+    specifier: ^6.6.0
+    version: 6.6.0
 
 devDependencies:
   "@types/node":
@@ -5931,6 +5934,13 @@ packages:
     dependencies:
       queue-microtask: 1.2.3
     dev: true
+
+  /runtypes@6.6.0:
+    resolution:
+      {
+        integrity: sha512-ddM7sgB3fyboDlBzEYFQ04L674sKjbs4GyW2W32N/5Ae47NRd/GyMASPC2PFw8drPHYGEcZ0mZ26r5RcB8msfQ==,
+      }
+    dev: false
 
   /rxjs@7.8.0:
     resolution:
