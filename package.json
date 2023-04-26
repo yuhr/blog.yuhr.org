@@ -3,11 +3,8 @@
 	"type": "module",
 	"scripts": {
 		"build": "next build",
-		"dev": "next dev",
+		"develop": "next dev",
 		"export": "next build && next export",
-		"lint": "npm run lint:next && npm run lint:prettier",
-		"lint:next": "next lint",
-		"lint:prettier": "prettier --write .",
 		"start": "next start"
 	},
 	"dependencies": {
