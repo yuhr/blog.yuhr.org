@@ -12,10 +12,7 @@ const listIssues = async () => {
 			const content = fs.readFileSync(filePath, { encoding: "utf-8" })
 			const issueMatter = matter(content)
 			const body = issueMatter.content
-			return {
-				body,
-				...issueMatter.data,
-			}
+			return { body, ...issueMatter.data }
 		})
 		.map(Issue.omit("bodyHTML").check)
 		.sort(compareByCreatedAt)

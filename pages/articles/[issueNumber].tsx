@@ -48,29 +48,19 @@ const Article: NextPage<Article.Props> = ({ issue, issueComments }) => {
 
 export default Article
 
+type Path = { params: { issueNumber: string } }
+
 export const getStaticPaths = async () => {
 	const issues = await listIssues()
-	const paths = issues.map(issue => {
-		return {
-			params: {
-				issueNumber: issue.number.toString(),
-			},
-		}
-	})
-	return {
-		paths,
-		fallback: false,
-	}
+	const paths = issues.map<Path>(issue => ({
+		params: { issueNumber: issue.number.toString() },
+	}))
+	return { paths, fallback: false }
 }
 
-export const getStaticProps = async ({ params }: any) => {
+export const getStaticProps = async ({ params }: Path) => {
 	const issueNumber = parseInt(params.issueNumber, 10)
-	const issue = await getIssue({ issueNumber })
-	const issueComments = await listIssueComments({ issueNumber })
-	return {
-		props: {
-			issue,
-			issueComments,
-		},
-	}
+	const issue = await getIssue(issueNumber)
+	const issueComments = await listIssueComments(issueNumber)
+	return { props: { issue, issueComments } }
 }

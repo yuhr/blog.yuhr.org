@@ -6,7 +6,7 @@ import dataDirectoryPath from "./dataDirectoryPath"
 import renderMarkdown from "./renderMarkdown"
 import IssueComment from "@/types/IssueComment"
 
-const listIssueComments = async ({ issueNumber }: { issueNumber: number }) => {
+const listIssueComments = async (issueNumber: number) => {
 	const paths = await glob.promise(
 		`${dataDirectoryPath}/issues/${issueNumber}/issue_comments/*.md`,
 	)
@@ -16,11 +16,7 @@ const listIssueComments = async ({ issueNumber }: { issueNumber: number }) => {
 			const issueMatter = matter(content)
 			const body = issueMatter.content
 			const bodyHTML = await renderMarkdown(body)
-			return {
-				body,
-				bodyHTML,
-				...issueMatter.data,
-			}
+			return { body, bodyHTML, ...issueMatter.data }
 		}),
 	)
 	return issueComments.map(IssueComment.check).sort(compareByCreatedAt)
