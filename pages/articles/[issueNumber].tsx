@@ -3,9 +3,11 @@ import type { NextPage } from "next"
 import Head from "next/head"
 import Link from "next/link"
 import Time from "@/components/Time"
-import { getIssue, listIssues, listIssueComments } from "@/lib/issue"
 import Issue from "@/types/Issue"
 import IssueComment from "@/types/IssueComment"
+import getIssue from "@/utils/getIssue"
+import listIssueComments from "@/utils/listIssueComments"
+import listIssues from "@/utils/listIssues"
 
 namespace Article {
 	export type Props = {
