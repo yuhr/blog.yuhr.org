@@ -43,12 +43,15 @@ jobs:
           publish_branch: data
           publish_dir: data
           cname: ${{ github.event.repository.name }}
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8.3.1
       - uses: actions/setup-node@v2
         with:
           node-version: 16.x
-          cache: npm
-      - run: npm install
-      - run: npm run export
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm export
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
