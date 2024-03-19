@@ -20,7 +20,7 @@ jobs:
           path: data
           ref: data
         continue-on-error: true
-      - uses: jdxcode/rtx-action@v1
+      - uses: jdxcode/mise-action@v2
       - uses: ./.github/actions/cache-pnpm-store
       - run: pnpm install --frozen-lockfile
       - run: pnpm export
