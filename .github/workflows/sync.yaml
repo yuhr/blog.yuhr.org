@@ -43,7 +43,7 @@ jobs:
           publish_branch: data
           publish_dir: data
           cname: ${{ github.event.repository.name }}
-      - uses: jdxcode/mise-action@v2
+      - uses: jdx/mise-action@v2
       - uses: ./.github/actions/cache-pnpm-store
       - run: pnpm install --frozen-lockfile
       - run: pnpm export
